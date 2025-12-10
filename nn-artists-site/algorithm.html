@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Решение алгоритмической задачи</title>
+  <style>
+    :root { --gap: 14px; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      margin: 0; padding: 0; background: #0f172a; color: #e2e8f0;
+      display: grid; place-items: start center; min-height: 100svh;
+    }
+    .container {
+      width: min(880px, 92vw);
+      margin: 4rem 0 2rem;
+      background: #111827; border: 1px solid #1f2937; border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      overflow: hidden;
+    }
+    header { padding: 22px 24px; border-bottom: 1px solid #1f2937; background: linear-gradient(180deg,#0b1220,#0f172a); }
+    h1 { margin: 0; font-size: clamp(1.1rem, 2.5vw, 1.6rem); letter-spacing: .3px; }
+    main { padding: 20px 24px 26px; display: grid; gap: var(--gap); }
+
+    .grid { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    label { display: grid; gap: 6px; font-size: .95rem; color: #cbd5e1; }
+    input[type="number"] {
+      width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #334155; background: #0b1220; color: #e2e8f0;
+      outline: none; transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    input[type="number"]:focus { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(96,165,250,.15); }
+
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    button {
+      padding: 10px 14px; border: 1px solid #334155; border-radius: 10px; background: #0b1220; color: #e2e8f0; cursor: pointer;
+      transition: transform .02s ease, background .2s ease, border-color .2s ease;
+    }
+    button:hover { background: #0f172a; border-color: #475569; }
+    button:active { transform: translateY(1px); }
+    .btn-primary { background: #2563eb; border-color: #2563eb; }
+    .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; }
+
+    .note { font-size: .9rem; color: #94a3b8; }
+    .result {
+      padding: 12px 14px; border-radius: 12px; border: 1px solid #334155; background: #0b1220; font-size: 1rem;
+    }
+    .ok    { border-color: #16a34a; background: #052e16; color: #bbf7d0; }
+    .bad   { border-color: #dc2626; background: #450a0a; color: #fecaca; }
+    .warn  { border-color: #f59e0b; background: #422006; color: #fde68a; }
+
+    .examples {
+      margin-top: 4px; font-size: .9rem; color: #94a3b8;
+    }
+    code { background: #0b1220; border: 1px solid #1f2937; padding: 2px 6px; border-radius: 6px; }
+    footer { padding: 12px 24px 20px; color: #94a3b8; font-size: .87rem; }
+    a { color: #93c5fd; }
+  </style>
+</head>
+<body>
+  <div class="container" role="application" aria-labelledby="page-title">
+    <header>
+      <h1 id="page-title">Решение алгоритмической задачи: принадлежит ли число X отрезку [a, b]</h1>
+    </header>
+
+    <main>
+      <p class="note">
+        Введите границы <strong>a</strong> и <strong>b</strong> и число <strong>X</strong>. Программа проверит, принадлежит ли X отрезку <em>[a, b]</em> (включая границы).
+      </p>
+
+      <div class="grid" aria-label="Входные данные">
+        <label>Граница a
+          <input id="a" type="number" step="any" placeholder="например, -2.5" />
+        </label>
+        <label>Граница b
+          <input id="b" type="number" step="any" placeholder="например, 7" />
+        </label>
+        <label>Число X
+          <input id="x" type="number" step="any" placeholder="например, 3.14" />
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="check" class="btn-primary">Проверить</button>
+        <button id="reset">Сброс</button>
+        <span class="note">Интервал — замкнутый: включены точки a и b.</span>
+      </div>
+
+      <output id="out" class="result" aria-live="polite">Здесь появится результат проверки.</output>
+      <div id="hint" class="examples"></div>
+
+      <details>
+        <summary>Описание алгоритма</summary>
+        <p>
+          1) Считать числа <code>a</code>, <code>b</code>, <code>x</code>.
+          2) Если <code>a &gt; b</code>, границы меняются местами (работаем с упорядоченным отрезком).
+          3) Проверить условие <code>a ≤ x ≤ b</code>. Если истинно — принадлежит, иначе — не принадлежит.
+        </p>
+      </details>
+    </main>
+
+    <footer>
+      <div>Подсказка: можно нажать Enter в любом поле, чтобы выполнить проверку.</div>
+    </footer>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const inputA = $("a");
+    const inputB = $("b");
+    const inputX = $("x");
+    const out    = $("out");
+    const hint   = $("hint");
+
+    function parse(v){
+      const n = Number(v);
+      return Number.isFinite(n) ? n : NaN;
+    }
+
+    function show(msg, cls){
+      out.textContent = msg;
+      out.className = `result ${cls||""}`.trim();
+    }
+
+    function check(){
+      const a0 = parse(inputA.value);
+      const b0 = parse(inputB.value);
+      const x  = parse(inputX.value);
+
+      if (Number.isNaN(a0) || Number.isNaN(b0) || Number.isNaN(x)) {
+        show("Ошибка: заполните все три поля числами.", "warn");
+        hint.textContent = "Пример: a = 2, b = 5, X = 3 → принадлежит.";
+        return;
+      }
+
+      let a = a0, b = b0, swapped = false;
+      if (a0 > b0) { a = b0; b = a0; swapped = true; }
+
+      const belongs = (x >= a && x <= b);
+
+      const relation = belongs ? "принадлежит" : "не принадлежит";
+      const baseMsg = `X = ${x} ${relation} отрезку [${a}; ${b}]`;
+
+      if (swapped) {
+        show(`${baseMsg}. Порядок границ был исправлен (a>b → поменяли местами).`, belongs ? "ok" : "bad");
+        hint.textContent = `Проверено условие: ${a} ≤ ${x} ≤ ${b}.`;
+      } else {
+        show(`${baseMsg}.`, belongs ? "ok" : "bad");
+        hint.textContent = `Проверено условие: ${a} ≤ ${x} ≤ ${b}.`;
+      }
+    }
+
+    function resetAll(){
+      inputA.value = ""; inputB.value = ""; inputX.value = "";
+      out.textContent = "Здесь появится результат проверки.";
+      out.className = "result";
+      hint.textContent = "";
+      inputA.focus();
+    }
+
+    $("check").addEventListener("click", check);
+    $("reset").addEventListener("click", resetAll);
+
+    // Enter запускает проверку
+    [inputA, inputB, inputX].forEach(el => el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        check();
+      }
+    }));
+
+    // Примеры для быстрого теста (клик — автоподстановка)
+    const examples = [
+      {a: 2, b: 5, x: 3},          // внутри
+      {a: -1.5, b: 4.2, x: -1.5},  // на левой границе
+      {a: -1.5, b: 4.2, x: 4.2},   // на правой границе
+      {a: 10, b: 1, x: 7},         // границы в обратном порядке
+      {a: 0, b: 1, x: 1.01}        // вне
+    ];
+
+    function renderExamples(){
+      hint.insertAdjacentHTML("beforeend", "\n        Примеры: \n      ");
+      const frag = document.createDocumentFragment();
+      examples.forEach(ex => {
+        const btn = document.createElement("button");
+        btn.textContent = `a=${ex.a}; b=${ex.b}; X=${ex.x}`;
+        btn.style.margin = "6px 6px 0 0";
+        btn.addEventListener("click", () => {
+          inputA.value = ex.a; inputB.value = ex.b; inputX.value = ex.x; check();
+        });
+        btn.setAttribute("aria-label", `Подставить пример a=${ex.a}, b=${ex.b}, X=${ex.x}`);
+        frag.appendChild(btn);
+      });
+      hint.appendChild(frag);
+    }
+
+    renderExamples();
+  </script>
+</body>
+</html>

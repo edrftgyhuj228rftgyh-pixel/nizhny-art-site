@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Маршруты и галереи — Нижегородские художники</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <style>
+    .breadcrumb {
+      margin: 16px 0 10px;
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    /* таблица с фоном и оформлением */
+    .art-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      background-image: url("assets/img/table-bg.jpg"); /* вместо атрибута background */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .art-table th,
+    .art-table td {
+      border: 1px solid rgba(0,0,0,0.12);
+      padding: 8px 10px;
+      vertical-align: top;
+      background: rgba(255,255,255,0.85);
+    }
+
+    .art-table thead th {
+      background: rgba(255,255,255,0.95);
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .art-table img {
+      display: block;
+      max-width: 120px;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .art-table .thumb-note {
+      font-size: 12px;
+      color: #444;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body id="top">
+
+<header class="site-header">
+  <div class="container">
+    <nav class="main">
+      <a href="index.html" data-href="index.html" class="home-link">
+        <img src="assets/img/logo.png" alt="Лого" class="logo"> Главная
+      </a>
+      <a href="page-1.html" data-href="page-1.html">Алик Якубович</a>
+      <a href="page-2.html" data-href="page-2.html">Синий Карандаш</a>
+      <a href="page-3.html" data-href="page-3.html">Музеи и галереи</a>
+      <a href="page-4.html" data-href="page-4.html">Маршруты и события</a>
+      <a href="contacts.html" data-href="contacts.html">Контакты / Формы</a>
+      <!-- Внешняя ссылка -->
+      <a href="https://artmuseum-nn.ru/" target="_blank" rel="noopener">Нижегородский художественный музей ↗</a>
+      <!-- Якорь на другой странице -->
+      <a href="page-2.html#part-b">Художники → Раздел B</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="breadcrumb">Вы здесь: <strong>Маршруты и галереи</strong></div>
+
+  <section id="museum-table">
+    <h2>Подборка музеев и галерей</h2>
+
+    <!-- Таблица с фоном, картинкой в ячейке и ссылками -->
+    <table class="art-table">
+      <caption style="caption-side: top; font-weight: 600; padding: 8px 0;">
+        Галереи и пространства Нижнего Новгорода
+      </caption>
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th>Адрес / Сайт</th>
+          <th>Изображение</th>
+          <th>Навигация</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Нижегородский художественный музей</strong></td>
+          <td>
+            Кремль, корп. 5<br>
+            <a href="https://artmuseumnn.ru/" target="_blank" rel="noopener">artmuseumnn.ru ↗</a>
+          </td>
+          <td align="center" width="160">
+            <!-- Картинка в ячейке -->
+            <a href="assets/img/nghm3.jpg" target="_blank" rel="noopener" title="Открыть большое изображение">
+              <img src="assets/img/nghm4.png" alt="Нижегородский художественный музей">
+            </a>
+            <div class="thumb-note">Клик увеличит изображение</div>
+          </td>
+          <td>
+            <!-- Внутренние/внешние ссылки -->
+            <a href="#museum-table">К началу раздела</a><br>
+            <a href="index.html">На главную</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>ГЦСИ «Арсенал»</strong></td>
+          <td>
+            Кремль, корп. 6<br>
+            <a href="https://arsenal-museum.art/" target="_blank" rel="noopener">arsenal-museum.art ↗</a>
+          </td>
+          <td align="center">
+            <a href="assets/img/arsenal2.jpg" target="_blank" rel="noopener" title="Открыть большое изображение">
+              <img src="assets/img/arsenal2.jpg" alt="ГЦСИ Арсенал">
+            </a>
+            <div class="thumb-note">Миниатюра открывается в новой вкладке</div>
+          </td>
+          <td>
+            <a href="#top">К началу страницы</a><br>
+            <a href="contacts.html#order">Перейти к заказу</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>«Пакгаузы»</strong></td>
+          <td>
+            Стрелка, ул. Самаркандская, 4<br>
+            <a href="https://packhouses.strelkapark.ru/" target="_blank" rel="noopener">packhouses.strelkapark.ru ↗</a>
+          </td>
+          <td align="center">
+            <a href="assets/img/packhouses1.jpg" target="_blank" rel="noopener" title="Открыть большое изображение">
+              <img src="assets/img/packhouses1.jpg" alt="Пакгаузы на Стрелке">
+            </a>
+            <div class="thumb-note">Открывается в новой вкладке</div>
+          </td>
+          <td>
+            <a href="page-2.html#part-b">К художникам: Раздел B</a><br>
+            <a href="#museum-table">К началу раздела</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container small">© 2025 · Тема: Нижегородские художники · Учебный сайт</div>
+</footer>
+
+<script src="assets/js/active-nav.js" defer></script>
+</body>
+</html>

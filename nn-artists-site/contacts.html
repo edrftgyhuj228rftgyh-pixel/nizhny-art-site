@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Контакты / Формы — Нижегородские художники</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body id="top">
+
+<header class="site-header">
+  <div class="container">
+    <nav class="main">
+      <a href="index.html" data-href="index.html" class="home-link">
+        <img src="assets/img/logo.png" alt="Лого" class="logo"> Главная
+      </a>
+      <a href="page-1.html" data-href="page-1.html">Алик Якубович</a>
+      <a href="page-2.html" data-href="page-2.html">Синий Карандаш</a>
+      <a href="page-3.html" data-href="page-3.html">Музеи и галереи</a>
+      <a href="page-4.html" data-href="page-4.html">Маршруты и события</a>
+      <a href="contacts.html" data-href="contacts.html">Контакты / Формы</a>
+      <!-- Внешняя ссылка в новом окне -->
+      <a href="https://artmuseum-nn.ru/" target="_blank" rel="noopener">Нижегородский художественный музей ↗</a>
+      <!-- Ссылка на якорь другой страницы -->
+      <a href="page-2.html#part-b">Художники → Раздел B</a>
+    </nav>
+  </div>
+</header>
+
+<script src="assets/js/active-nav.js" defer></script>
+
+<main class="container">
+  <div class="breadcrumb">Вы здесь: <strong>Контакты / Формы</strong></div>
+
+  <nav class="inner-nav">
+    <a href="#contacts">Контакты</a>
+    <a href="#order">Заказ</a>
+    <a href="#top">К началу</a>
+  </nav>
+
+  <!-- ФОРМА 1: контакты (отправка на удалённый сервер) -->
+  <h2 id="contacts">Форма контактов (отправка на удалённый сервер)</h2>
+  <div class="form-card">
+    <form method="post" action="https://httpbin.org/post">
+      <input type="hidden" name="source" value="contacts-form">
+
+      <label>Фамилия
+        <input type="text" name="lastname" required>
+      </label>
+
+      <label>Имя
+        <input type="text" name="firstname" required>
+      </label>
+
+      <label>Группа
+        <input type="text" name="group" placeholder="ИС-21">
+      </label>
+
+      <label>Мобильный телефон
+        <input type="tel" name="phone" placeholder="+7...">
+      </label>
+
+      <label>Электронная почта
+        <input type="email" name="email" placeholder="name@example.com">
+      </label>
+
+      <label>Дата отправки сообщения
+        <input type="date" name="sent_date" value="2025-10-16">
+      </label>
+
+      <div class="controls">
+        <button class="btn" type="submit">Отправить</button>
+        <button class="btn secondary" type="reset">Сбросить</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ФОРМА 2: заказ из «магазина» (обязательные text + number + radio) -->
+  <h2 id="order">Тематика: заказ из магазина (все требуемые типы)</h2>
+  <div class="form-card">
+    <form method="post" action="https://httpbin.org/post">
+      <input type="hidden" name="form_type" value="order">
+
+      <!-- text -->
+      <label>Товар
+        <input type="text" name="item" value="Альбом репродукций" required>
+      </label>
+
+      <!-- number -->
+      <label>Количество
+        <input type="number" name="qty" value="1" min="1" step="1" required>
+      </label>
+
+      <label>Дата доставки
+        <input type="date" name="delivery_date">
+      </label>
+
+      <!-- radio -->
+      <fieldset style="border:1px solid #d1d5db;padding:.5rem;border-radius:.5rem">
+        <legend>Способ оплаты</legend>
+        <label>
+          <input type="radio" name="pay_method" value="card" checked required> Карта
+        </label>
+        <label>
+          <input type="radio" name="pay_method" value="cash"> Наличными
+        </label>
+      </fieldset>
+
+      <fieldset style="border:1px solid #d1d5db;padding:.5rem;border-radius:.5rem;margin-top:.5rem">
+        <legend>Дополнительно</legend>
+        <label>
+          <input type="checkbox" name="gift_wrap" value="yes"> Подарочная упаковка
+        </label>
+        <label>
+          <input type="checkbox" name="sms_notify" value="yes" checked> SMS-уведомление
+        </label>
+      </fieldset>
+
+      <label>Пароль для личного кабинета
+        <input type="password" name="account_password" value="demo1234">
+      </label>
+
+      <div class="controls">
+        <button class="btn" type="submit">Отправить заказ</button>
+        <button class="btn secondary" type="reset">Сбросить</button>
+      </div>
+    </form>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container small">© 2025 · Тема: Нижегородские художники · Учебный сайт</div>
+</footer>
+
+</body>
+</html>

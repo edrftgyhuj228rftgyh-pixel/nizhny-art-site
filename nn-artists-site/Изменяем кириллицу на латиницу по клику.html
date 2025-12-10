@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)file:///C:/Users/Roman/Desktop/minor2/DOM/password_change/index.html -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Изменяем кириллицу на латиницу по клику</title>
+</head>
+
+<body>
+    <table align="center" cellspacing="0" cellpadding="10" border="1" width="700">
+        <tbody><tr>
+            <td colspan="3" height="50" align="center">Российская федерация</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Паспорт выдан: <span id="mvd">ГУ МВД РОССИИ ПО БАСМАННОМУ РАЙОНУ</span>
+            </td>
+            <td rowspan="5">2202 12345</td>
+        </tr>
+        <tr>
+            <td>Дата выдачи <span id="date">02/22/2025</span></td>
+            <td>Код подразделения <span id="code">228</span></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
+                <span id="LK">123</span><br>__________________________<br>
+                Личный код <span id="LK_view"></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
+                <span id="Podpis_view"></span><br>________________________<br>
+                Подпись <span id="Podpis"></span>
+            </td>
+        </tr>
+    </tbody></table>
+
+    <table align="center" cellspacing="0" cellpadding="10" border="1" width="700">
+        <tbody><tr>
+            <td rowspan="5" width="150"></td>
+            <td>Фамилия: <span id="secondNameCard">Новгородов</span></td>
+        </tr>
+        <tr>
+            <td>Имя: <span id="firstNameCard">Роман</span></td>
+        </tr>
+        <tr>
+            <td>Отчество: <span id="Otchestvo">Алексеевич</span></td>
+        </tr>
+        <tr>
+            <td>
+                Пол: <span id="gender">Муж.</span>
+                &nbsp;&nbsp; Дата рождения: <span id="birthDateCard">21.07.2006</span>
+            </td>
+        </tr>
+    </tbody></table>
+
+    
+<p>Фамилия: <span id="secondName">Новгородов</span></p>
+<p>Имя: <span id="firstName">Роман</span></p>
+<p>Год рождения: <span id="birthYear">2006</span></p>
+    <!-- Скриншот из DevTools -->
+<h3>Скриншот получения данных из DOM</h3>
+<img src="./Изменяем кириллицу на латиницу по клику_files/screnshot1.png" alt="Скриншот DevTools" style="max-width:100%;height:auto;">
+<!-- Кнопка/зона клика -->
+    <p id="for_click">кликните здесь</p>
+
+    <script src="./Изменяем кириллицу на латиницу по клику_files/change.js">
+        document.getElementById("for_click").onclick = function() {
+  document.getElementById("secondName").innerText = "Novgorodov";
+  document.getElementById("firstName").innerText = "Roman";
+};
+
+    </script>
+
+
+</body></html>
