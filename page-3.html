@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Музеи и галереи — Нижегородские художники</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <style>
+    .breadcrumb {
+      margin: 16px 0 10px;
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    .inner-nav {
+      margin: 16px 0 20px;
+      padding: 10px 0;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .inner-nav a {
+      text-decoration: none;
+      color: #1f2937;
+    }
+
+    .inner-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .section-block {
+      margin-bottom: 32px;
+    }
+
+    .section-block img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 10px 0 4px;
+    }
+
+    .section-block figcaption {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    /* сетка повторяющихся блоков (музеи / галереи) */
+    .places-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .place-card {
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: #f9fafb;
+      padding: 14px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .place-card h3 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .place-meta {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .place-desc {
+      font-size: 14px;
+      margin: 4px 0 6px;
+    }
+
+    .place-link {
+      font-size: 14px;
+      margin-top: auto;
+    }
+
+    .place-link a {
+      color: #0b5fff;
+      text-decoration: none;
+    }
+
+    .place-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .inner-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+
+<header class="site-header">
+  <div class="container">
+    <nav class="main">
+      <a href="index.html" data-href="index.html" class="home-link">
+        <img src="assets/img/logo.png" alt="Лого" class="logo"> Главная
+      </a>
+      <a href="page-1.html" data-href="page-1.html">алик якубович</a>
+      <a href="page-2.html" data-href="page-2.html">синий карандаш</a>
+      <a href="page-3.html" data-href="page-3.html">музеи и галереи</a>
+      <a href="page-4.html" data-href="page-4.html">маршруты и события</a>
+      <a href="contacts.html" data-href="contacts.html">контакты / формы</a>
+      <!-- Внешняя ссылка в новом окне -->
+      <a href="https://artmuseum-nn.ru/" target="_blank" rel="noopener">нижегородский художественный музей ↗</a>
+      <!-- Ссылка на якорь другой страницы -->
+      <a href="page-2.html#part-b">художники → раздел B</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="breadcrumb">Вы здесь: <strong>Музеи и галереи</strong></div>
+
+  <!-- внутренняя навигация по странице -->
+  <nav class="inner-nav" aria-label="Навигация по странице">
+    <a href="#section-1">Раздел 1 — Основные площадки</a>
+    <a href="#section-2">Раздел 2 — Экспозиции</a>
+    <a href="#section-3">Раздел 3 — Карточки музеев</a>
+    <a href="#top">К началу страницы</a>
+  </nav>
+
+  <!-- Раздел 1 -->
+  <section id="section-1" class="section-block">
+    <h2>Раздел 1. Основные площадки</h2>
+    <ul>
+      <li>
+        Нижегородский художественный музей — 
+        <a href="https://artmuseum-nn.ru/" target="_blank" rel="noopener">официальный сайт ↗</a>
+      </li>
+      <li>Галерея современного искусства (корпус музея на Ошарской)</li>
+      <li>Арсенал — главный центр современного искусства в городе</li>
+    </ul>
+  </section>
+
+  <!-- Раздел 2 -->
+  <section id="section-2" class="section-block">
+    <h2>Раздел 2. Экспозиции</h2>
+    <p>
+      В Нижнем Новгороде можно увидеть как классическую живопись и графику, так и
+      экспериментальные выставки современных художников. Постоянные экспозиции соседствуют
+      с временными проектами, посвящёнными отдельным авторам, темам и историческим периодам.
+    </p>
+    <figure>
+      <img src="assets/img/мечты_о_доме.jpg" alt="Экспозиция в зале музея">
+      <figcaption>Экспозиция «Мечты о доме» в одном из залов Нижегородского художественного музея.</figcaption>
+    </figure>
+  </section>
+
+  <!-- Раздел 3: повторяющиеся блоки, генерируемые через JS -->
+  <section id="section-3" class="section-block">
+    <h2>Раздел 3. Музеи и галереи (карточки)</h2>
+    <p>
+      Ниже — подборка музеев и выставочных пространств, где можно увидеть работы нижегородских художников
+      и кураторские проекты про город и регион. Карточки ниже созданы с помощью JavaScript.
+    </p>
+
+    <div id="places-grid" class="places-grid">
+      <!-- карточки подставятся здесь из JS -->
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container small">© 2025 · Тема: Нижегородские художники · Учебный сайт</div>
+</footer>
+
+<script src="assets/js/active-nav.js" defer></script>
+<script src="assets/js/museums.js" defer></script>
+</body>
+</html>

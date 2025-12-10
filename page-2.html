@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Синий карандаш — Нижегородские художники</title>
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <style>
+    :root{
+      --bg:#0f172a;          /* тёмно-синий фон */
+      --ink:#1e293b;         /* глубокий синий для карточек */
+      --card:#0b1224;        /* ещё темнее, для секций */
+      --text:#e6f0ff;        /* светлый текст */
+      --muted:#9fb3d1;
+      --accent:#60a5fa;      /* небесно-синий акцент */
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,Inter,Roboto,"Segoe UI","Helvetica Neue",Arial;
+    }
+
+    img{display:block; max-width:100%; height:auto}
+    a{color:var(--accent); text-decoration:none}
+
+    /* шапка сайта (та же, что и на других страницах) */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15,23,42,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148,163,184,0.3);
+    }
+
+    .site-header .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    nav.main a {
+      color: #e5e7eb;
+      text-decoration: none;
+      margin-right: 18px;
+      font-weight: 500;
+      text-transform: lowercase;
+      font-size: 14px;
+    }
+
+    nav.main a:hover {
+      color: var(--accent);
+    }
+
+    nav.main a.active,
+    nav.main a[aria-current="page"] {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .logo {
+      height: 28px;
+      width: auto;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    /* hero */
+    .hero{
+      position:relative;
+      min-height:64vh;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+    }
+    .hero img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:brightness(.55) saturate(1.05);
+    }
+    .hero .overlay{
+      position:absolute;
+      inset:0;
+      background:radial-gradient(ellipse at 60% 40%, rgba(13,31,64,.25), rgba(13,31,64,.6));
+    }
+    .hero .title{
+      position:relative;
+      text-align:center;
+      padding:0 16px;
+    }
+    .hero h1{
+      font-size:clamp(34px,7vw,84px);
+      margin:.2em 0;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+    }
+    .hero p{
+      margin:0;
+      opacity:.9;
+    }
+
+    /* контейнер и секции */
+    .container-main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 18px;
+    }
+
+    .section{
+      padding:40px 0;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(15,23,42,1));
+      border:1px solid rgba(148,163,184,.25);
+      border-radius:16px;
+      box-shadow:0 10px 40px rgba(0,0,0,.35);
+    }
+
+    /* внутренняя навигация по странице */
+    .inner-nav{
+      margin:24px 0 16px;
+      padding:10px 0;
+      border-top:1px solid rgba(148,163,184,.4);
+      border-bottom:1px solid rgba(148,163,184,.4);
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      font-size:14px;
+    }
+
+    .inner-nav span{
+      font-weight:600;
+      margin-right:8px;
+    }
+
+    .inner-nav a{
+      color:var(--muted);
+    }
+
+    .inner-nav a:hover{
+      text-decoration:underline;
+      color:var(--accent);
+    }
+
+    .content-section{
+      margin-bottom:40px;
+    }
+
+    .content-section p{
+      color:var(--muted);
+      line-height:1.7;
+      font-size:16px;
+    }
+
+    /* bio */
+    .bio{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      padding:22px;
+    }
+    .bio h2{
+      margin:0 0 4px;
+      font-size:24px;
+    }
+
+    /* works grid */
+    .works{
+      padding:22px;
+    }
+    .works h2{
+      margin:0 0 14px 0;
+      padding:0 4px;
+      font-size:22px;
+      color:#cddbf5;
+    }
+    .grid{
+      display:grid;
+      gap:14px;
+      grid-template-columns:1fr 1fr;
+    }
+    @media (min-width:900px){
+      .grid{grid-template-columns:repeat(3,1fr);}
+    }
+
+    .thumb{
+      position:relative;
+      overflow:hidden;
+      border-radius:12px;
+      border:1px solid rgba(148,163,184,.35);
+    }
+    .thumb img{
+      transition:transform .35s ease;
+    }
+    .thumb:hover img{
+      transform:scale(1.04);
+    }
+    .cap{
+      position:absolute;
+      left:10px;
+      bottom:10px;
+      padding:6px 10px;
+      border-radius:10px;
+      font-size:13px;
+      background:rgba(15,23,42,.8);
+      backdrop-filter:blur(6px);
+      border:1px solid rgba(148,163,184,.5);
+    }
+
+    .footer{
+      padding:26px 0;
+      color:#9ab0d1;
+      text-align:center;
+      border-top:1px solid rgba(148,163,184,.4);
+      margin-top:24px;
+      font-size:13px;
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- общая шапка сайта -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="main">
+        <a href="index.html" data-href="index.html" class="home-link">
+          <img src="assets/img/logo.png" alt="Лого" class="logo"> главная
+        </a>
+        <a href="page-1.html" data-href="page-1.html">алик якубович</a>
+        <a href="page-2.html" data-href="page-2.html">синий карандаш</a>
+        <a href="page-3.html" data-href="page-3.html">арсенал</a>
+        <a href="page-4.html" data-href="page-4.html">маршруты</a>
+        <a href="contacts.html" data-href="contacts.html">контакты / формы</a>
+        <a href="https://arsenal-museum.art/" target="_blank" rel="noopener">арсенал ↗️</a>
+        <a href="page-2.html#part-b">художники → раздел B</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <header class="hero" aria-label="Заставка Синий карандаш">
+    <img src="синийава.jpg" alt="Крупный план синих карандашей на текстурной бумаге">
+    <div class="overlay" aria-hidden="true"></div>
+    <div class="title">
+      <h1>Синий карандаш</h1>
+      <p>текстовый стрит-арт и лаконичные интервенции в городском пространстве</p>
+    </div>
+  </header>
+
+  <main class="container-main section">
+    <!-- внутренняя навигация по этой странице -->
+    <nav class="inner-nav" aria-label="Навигация по странице">
+      <span>Навигация по странице:</span>
+      <a href="#bio">Раздел 1 — Биография</a>
+      <a href="#style">Раздел 2 — Стиль</a>
+      <a href="#works">Раздел 3 — Работы</a>
+      <a href="#top">К началу страницы</a>
+    </nav>
+
+    <!-- Раздел 1 -->
+    <section class="card bio content-section" id="bio">
+      <h2>Краткий биографический очерк</h2>
+      <p>
+        Синий Карандаш — уличный художник из Нижнего Новгорода, уже более десяти лет работающий
+        с текстовым стрит-артом и художественными интервенциями в городском пространстве.
+        Автор часто называет себя «сознательным гражданином Нижнего Новгорода».
+      </p>
+      <p>
+        Проекты художника показывались на локальных выставках и онлайн-галереях;
+        серия «Волга. Берег» отмечена за внимательность к фактуре и экономию цвета.
+        Сегодня «Синий карандаш» продолжает экспериментировать с бумагой, тушью и сухими материалами,
+        сохраняя узнаваемую лаконичность.
+      </p>
+    </section>
+
+    <!-- Раздел 2 -->
+    <section class="card content-section" id="style" style="padding:22px;">
+      <h2>Художественный язык и мотивы</h2>
+      <p>
+        Основой работ Синего карандаша остаются короткие фразы, надписи и минимальные графические знаки.
+        Он работает на стыке поэзии и визуального искусства: каждое высказывание существует
+        одновременно как текст и как объект в городской среде.
+      </p>
+      <p>
+        Художнику важен контекст — стенa, забор, старый фасад или лестничный пролёт.
+        Надпись никогда не «сама по себе»: она вступает в диалог с фактурой поверхности,
+        историей района и маршрутом прохожего.
+      </p>
+    </section>
+
+    <!-- Раздел 3 -->
+    <section class="card works content-section" id="works">
+      <h2 id="part-b">Работы</h2>
+      <div class="grid">
+        <figure class="thumb">
+          <img src="синий карандаш 3.jpg" alt="Фраза на бетонной стене у берега Волги" loading="lazy">
+          <figcaption class="cap">«Волга. Берег», фрагмент серии</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <img src="синий карандаш2.jpg" alt="Надпись на кирпичном фасаде старого дома" loading="lazy">
+          <figcaption class="cap">Текстовая интервенция в историческом квартале</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <img src="синий карандаш6.jpg" alt="Синий штрих на фактурной штукатурке" loading="lazy">
+          <figcaption class="cap">Эксперимент с фактурой и цветом, 2022</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <img src="синий карандаш7.jpg" alt="Фраза на металлических гаражах" loading="lazy">
+          <figcaption class="cap">Серия о спальных районах</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <img src="синий карандаш 4.jpg" alt="Текст на лестничном пролёте" loading="lazy">
+          <figcaption class="cap">Интервенция в подъезде сталинки</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <img src="синий карандаш7.jpg" alt="Повторяющийся мотив в индустриальной зоне" loading="lazy">
+          <figcaption class="cap">Мотив, возвращающийся в разных точках города</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 2025 «Синий карандаш». Все изображения принадлежат автору.
+  </footer>
+
+  <!-- подсветка активного пункта меню -->
+  <script src="assets/js/active-nav.js" defer></script>
+</body>
+</html>
